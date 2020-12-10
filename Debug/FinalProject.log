@@ -1,11 +1,11 @@
 ﻿  final.cpp
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(184,36): warning C4018: '>': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(198,25): warning C4804: '>': unsafe use of type 'bool' in operation
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(198,37): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(321,20): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(493,21): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(531,21): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(634,21): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(663,21): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(712,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(172,36): warning C4018: '>': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(189,36): warning C4018: '>': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(309,20): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(490,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(528,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(633,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(665,20): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(668,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(718,21): warning C4018: '<': signed/unsigned mismatch
   FinalProject.vcxproj -> D:\C++ 216\C++ Projects\FinalProject\Debug\FinalProject.exe
