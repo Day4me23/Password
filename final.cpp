@@ -23,8 +23,8 @@ using namespace std;
 void validation();
 void displayLine(vector<string> data);
 void viewLine(vector<string> data, int fileLine);
-void editLine(vector<string> data, int fileLine);
-void addLine(vector<string> data, int fileLine);
+vector<string> editLine(vector<string> data, int fileLine);
+vector<string> addLine(vector<string> data, int fileLine);
 void saveAndEncodeFile(vector <string> data);
 void exitProgram();
 vector<string> readFile(string, vector<string>, ifstream&, string userIn);
@@ -127,10 +127,10 @@ int main() {
 			viewLine(decodedData, fileLine);
 			break;
 		case 'E':
-			editLine(decodedData, fileLine);
+			decodedData = editLine(decodedData, fileLine);
 			break;
 		case 'A':
-			addLine(decodedData, fileLine);
+			decodedData = addLine(decodedData, fileLine);
 			break;
 		case 'S':
 			saveAndEncodeFile(decodedData);
@@ -168,12 +168,20 @@ void displayLine(vector<string> data) {
 } // end displayLine
 
 void viewLine(vector<string> data, int fileLine) {
+	
 	do {
-		cout << "Which description would you like to see? (Values 1-10) " << endl;
-		cin >> fileLine;
-		cout << endl;
-		//-----------------------------------------------------------------------------------NEED VALIDATION UPDATE
-	} while (!fileLine > 1 && fileLine < data.size());
+		for (;;) {
+			cout << "Which description would you like to see? (Values 1- )" << data.size() << endl;
+			if (cin >> fileLine) {
+				break;
+			}
+			//cout << "Please enter a valid integer" << endl;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		}
+			
+		
+	} while (fileLine < 1 || fileLine > data.size());
 	getFullLine(data, fileLine);
 
 	
@@ -181,7 +189,7 @@ void viewLine(vector<string> data, int fileLine) {
 	displayOptions();
 } // end viewLine
 
-void editLine(vector<string> data, int fileLine) {
+vector<string> editLine(vector<string> data, int fileLine) {
 	do {
 		cout << "Enter line number you wish to edit:" << endl;
 		cin >> fileLine;
@@ -195,18 +203,20 @@ void editLine(vector<string> data, int fileLine) {
 
 	data = newEdit(data, fileLine);
 	displayOptions();
+	return data;
 } // end editLine
 
-void addLine(vector<string> data, int fileLine) {
+vector<string> addLine(vector<string> data, int fileLine) {
 	cout << "WARNING: You cannot use semi-colons in these fields. Any semicolons entered will be removed." << endl << endl;
 	// pushback
 	data = newAdd(data, fileLine);
 	displayOptions();
+	return data;
 } // end addLine
 
 
 
-void saveAndEncodeFile(vector <string> decodedData) {
+void saveAndEncodeFile(vector<string> decodedData) {
 	int encodeLevel;
 	vector<string> encodedVector;
 	string userIn;
@@ -256,7 +266,14 @@ vector<string> readFile(string strFile, vector<string> data, ifstream& inputFile
 {
 	string inputString;
 	string line;
-	inputFile.open(userIn);
+	
+		inputFile.open(userIn);
+		if (!inputFile.is_open())
+		{
+			cout << "Error opening file." << endl;
+			exit(1);
+		}
+	
 	while (getline(inputFile, line))
 	{
 		vector<string> columns = split(line, '\n');
@@ -498,7 +515,6 @@ vector<string> encode1(vector<string> data, bool encode3)
 		}
 		encodedVector.push_back(encodedMsg);
 	}
-	
 	return encodedVector;
 }
 
@@ -687,48 +703,44 @@ vector<string> decode3(vector<string> data)
 		}
 	}
 	
-	
 	encodedVector = encodeCharSwap(encodedVector);
 	//decode2
-	for (int j = 0; j < 11; j++)
+	for (int j = 0; j < 10; j++)
 	{
 		encodedMsg = "";
-		for (int i = 0; i < data[j].length(); i++) {
-			ch = data[j][i];
-			
-			x = static_cast<int>(ch);
-			
-			if (x % 3 == 0)
-			{
-				x = x - FOURTH_ALTERATION;
-		
-			}
+		for (int i = 0; i < encodedVector[j].length(); i++) {
+			ch = encodedVector[j][i];
 
-			x = x - THIRD_ALTERATION;
-			// decode 1
-			if (i % 2 != 0)
+			x = static_cast<int>(ch); 
+
+			if (x != 59)
 			{
-				x = x - SECOND_ALTERATION;
-				
+				if (x % 3 == 0)
+				{
+					x = x - FOURTH_ALTERATION; 
+				}
+				x = x - THIRD_ALTERATION; 
+				// decode 1
+
+				x = x + FIRST_ALTERATION; 
+
+				if (i % 2 != 0)
+				{
+					x = x - SECOND_ALTERATION; 
+				}
 			}
-			x = x + FIRST_ALTERATION;
 			
-			
-			if (x == 58)
-			{
-				x = 59;
-			}
-			ch = static_cast<char>(x);
+			ch = static_cast<char>(x); 
 
 			encodedMsg += x;
 
 		}  //  end for loop
 
-		if (j != 0)
 		{
 			finalDecode.push_back(encodedMsg);
 		}
 		
 	}
+	
 	return finalDecode;
 }
