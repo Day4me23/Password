@@ -1,0 +1,12 @@
+﻿  final.cpp
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(176,25): warning C4804: '>': unsafe use of type 'bool' in operation
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(176,37): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(190,25): warning C4804: '>': unsafe use of type 'bool' in operation
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(190,37): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(304,20): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(476,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(514,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(617,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(646,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(696,21): warning C4018: '<': signed/unsigned mismatch
+  FinalProject.vcxproj -> D:\C++ 216\C++ Projects\FinalProject\Debug\FinalProject.exe
