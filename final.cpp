@@ -687,7 +687,7 @@ vector<string> decode3(vector<string> data)
 		}
 	}
 	
-	//encodedVector.erase(encodedVector.begin());
+	
 	encodedVector = encodeCharSwap(encodedVector);
 	//decode2
 	for (int j = 0; j < 11; j++)
