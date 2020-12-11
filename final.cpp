@@ -11,9 +11,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <cstdlib>
-//#include <ctime> --------------------------------------------
 #include<string>
-//#include<conio.h> -------------------------------------------
 #include<vector>
 #include <sstream>
 #include <algorithm>
@@ -86,7 +84,7 @@ int main() {
 	} // end else if E3
 	else if (encodelevel == "E0;")
 	{
-		for (int j = 0; j < 11; j++)
+		for (int j = 0; j < data.size(); j++)
 		{
 			if (j != 0)
 			{
@@ -204,15 +202,13 @@ vector<string> addLine(vector<string> data, int fileLine) // Carries data into n
 	return data;
 } // end addLine
 
-
-
 void saveAndEncodeFile(vector<string> decodedData) // Select new file name/encode level and send to specific encode method based on user selection
 {
-	int encodeLevel;
+	char encodeLevel;
 	string throwAway;
 	vector<string> encodedVector;
 	string userIn;
-	int newEncodeLevel = 0;
+	char flag;
 	cout << "Enter file name: " << endl;
 	cin >> userIn;
 	// getline potential ------------------------------------------------------------------------------
@@ -221,25 +217,39 @@ void saveAndEncodeFile(vector<string> decodedData) // Select new file name/encod
 		cout << "Enter encoding level <0, 1, 2, or 3>" << endl;
 		cin >> encodeLevel;
 		cout << endl;
+		if (isalpha(encodeLevel)) {
+			cout << "An unexpected character was entered. Please select an available option listed below." << endl;
+		} // end if isdigit()
+		else if (isdigit(encodeLevel)) {
+			if (encodeLevel == '0' || encodeLevel == '1' || encodeLevel == '2' || encodeLevel == '3') {
+				break;
+			} // end if option checker
+			cout << "An unexpected numeric input was entered. Please select an available option listed below." << endl;
+		} // end else if isalpha()
+		else
+		{
+			cout << "An unexpected character was entered. Please select an available option listed below." << endl;
+		}
+	} while (encodeLevel != 1 || encodeLevel != 2 || encodeLevel != 3 || encodeLevel != 0); // end do loop
 		//-------------------------------------------------------------------------------------------------
-	} while (encodeLevel < 0 || encodeLevel > 3); // end do loop
+	// } while (encodeLevel < 0 || encodeLevel > 3); // end do loop
 	cout << endl;
 	bool encode = false;
 
 	switch (encodeLevel) {
-	case 1:
+	case '1':
 		encodedVector = encode1(decodedData, encode);
 		saveFile(encodedVector, userIn);
 		break;
-	case 2:
+	case '2':
 		encodedVector = encode2(decodedData, encode);
 		saveFile(encodedVector, userIn);
 		break;
-	case 3:
+	case '3':
 		encodedVector = encode3(decodedData);
 		saveFile(encodedVector, userIn);
 		break;
-	case 0:
+	case '0':
 		decodedData.insert(decodedData.begin(), "E0;");
 		saveFile(decodedData, userIn);
 		break;
@@ -272,7 +282,7 @@ vector<string> readFile(string strFile, vector<string> data, ifstream& inputFile
 	return data;
 } // end readFile
 
-vector<string>split(const string& s, char delim = ',') // ----------------------------------------------------------------------
+vector<string>split(const string& s, char delim = ',') // Read file helper method
 {
 	vector<string> elems;
 	stringstream ss(s);
@@ -387,17 +397,41 @@ vector<string> newEdit(vector<string> data, int fileLine) // Getting new informa
 
 	do {
 		getline(cin, throwaway);
-		cout << "Enter a line description:" << endl;
-		getline(cin, desc);
+		do {
+			cout << "Enter a line description:" << endl;
+			getline(cin, desc);
+			if (desc.empty()) 
+			{
+				cout << "No information entered in current field." << endl;
+			}
+		} while (desc.empty());
 		desc.erase(remove(desc.begin(), desc.end(), ';'), desc.end());
-		cout << "Enter a username:" << endl;
-		getline(cin, userName);
+		do {
+			cout << "Enter a username:" << endl;
+			getline(cin, userName);
+			if (userName.empty())
+			{
+				cout << "No information entered in current field." << endl;
+			}
+		} while (userName.empty());
 		userName.erase(remove(userName.begin(), userName.end(), ';'), userName.end());
-		cout << "Enter a password:" << endl;
-		getline(cin, passWord);
+		do {
+			cout << "Enter a password:" << endl;
+			getline(cin, passWord);
+			if (passWord.empty())
+			{
+				cout << "No information entered in current field." << endl;
+			}
+		} while (passWord.empty());
 		passWord.erase(remove(passWord.begin(), passWord.end(), ';'), passWord.end());
-		cout << "Enter Notes:" << endl;
-		getline(cin, notes);
+		do {
+			cout << "Enter Notes:" << endl;
+			getline(cin, notes);
+			if (notes.empty())
+			{
+				cout << "No information entered in current field." << endl;
+			}
+		} while (notes.empty());
 		notes.erase(remove(notes.begin(), notes.end(), ';'), notes.end());
 		cout << endl;
 		cout << "You have entered:" << endl;
@@ -434,20 +468,38 @@ vector<string> newAdd(vector<string> data, int fileLine) // Getting new informat
 		do {
 			cout << "Enter a line description:" << endl;
 			getline(cin, aDesc);
-			if (!aDesc.empty()) // ------------------------------------------------------------------------------------
+			if (aDesc.empty()) 
 			{
 				cout << "No information entered in current field." << endl;
 			}
-		} while (!aDesc.empty());
+		} while (aDesc.empty());
 		aDesc.erase(remove(aDesc.begin(), aDesc.end(), ';'), aDesc.end());
-		cout << "Enter a username:" << endl;
-		getline(cin, aUserName);
+		do {
+			cout << "Enter a username:" << endl;
+			getline(cin, aUserName);
+			if (aUserName.empty()) 
+			{
+				cout << "No information entered in current field." << endl;
+			}
+		} while (aUserName.empty());
 		aUserName.erase(remove(aUserName.begin(), aUserName.end(), ';'), aUserName.end());
-		cout << "Enter a password:" << endl;
-		getline(cin, aPassWord);
+		do {
+			cout << "Enter a password:" << endl;
+			getline(cin, aPassWord);
+			if (aPassWord.empty())
+			{
+				cout << "No information entered in current field." << endl;
+			}
+		} while (aPassWord.empty());
 		aPassWord.erase(remove(aPassWord.begin(), aPassWord.end(), ';'), aPassWord.end());
-		cout << "Enter Notes:" << endl;
-		getline(cin, aNotes);
+		do {
+			cout << "Enter Notes:" << endl;
+			getline(cin, aNotes);
+			if (aNotes.empty())
+			{
+				cout << "No information entered in current field." << endl;
+			}
+		} while (aNotes.empty());
 		aNotes.erase(remove(aNotes.begin(), aNotes.end(), ';'), aNotes.end());
 		cout << endl;
 		cout << "You have entered:" << endl;
@@ -484,7 +536,7 @@ vector<string> encode1(vector<string> data, bool encode3) // Encode level one co
 	int x = 0;
 	string encodedMsg = "";
 	vector<string> encodedVector;
-	for (int j = 0; j < 10; j++)
+	for (int j = 0; j < data.size(); j++)
 	{
 		encodedMsg = "";
 		for (int i = 0; i < data[j].length(); i++) {
@@ -521,15 +573,24 @@ vector<string> encode2(vector<string> data, bool encode3) // Encode level two co
 	int x = 0;
 	string encodedMsg = "";
 	vector<string> encodedVector;
+	
 	data = encodeCharSwap(data);
-	for (int j = 0; j < 10; j++)
+	if (encode3 == false)
+	{
+		encodedVector.push_back("E2;");
+	} // end if index 0 checker
+	else if (encode3 == true)
+	{
+		encodedVector.push_back("E3;");
+	} // end else if index 0 checker
+	for (int j = 0; j < data.size(); j++)
 	{
 		encodedMsg = "";
 		for (int i = 0; i < data[j].length(); i++) {
 			ch = data[j][i];
 
 			x = static_cast<int>(ch);
-			if (x != 59)
+			// if (x != 59)
 			{
 			x = x + THIRD_ALTERATION;
 
@@ -544,16 +605,10 @@ vector<string> encode2(vector<string> data, bool encode3) // Encode level two co
 			encodedMsg += x;
 
 		}  //  end for index
-		if (j == 0 && encode3 == false)
-		{
-			encodedVector.push_back("E2;");
-		} // end if index 0 checker
-		else if (j == 0 && encode3 == true)
-		{
-			encodedVector.push_back("E3;");
-		} // end else if index 0 checker
+		
 		encodedVector.push_back(encodedMsg);
 	} // end for j
+	
 	return encodedVector;
 } // end encode2
 
@@ -580,12 +635,13 @@ vector<string> encodeCharSwap(vector<string> data) // going through each full li
 	string passLine;
 	string notes;
 
-	for (int j = 0; j < 10; j++) {
+	for (int j = 0; j < data.size(); j++) {
 		for (int i = 0; i < 4; i++) {
 			string fullLine = data.at(j);
 			string::size_type pos = fullLine.find(';');
 			if (i == 0) {
 				description = fullLine.substr(0, pos);
+				if (description.length() > 2)
 				iter_swap(description.begin(), description.rbegin());
 
 			} // end if description
@@ -593,6 +649,7 @@ vector<string> encodeCharSwap(vector<string> data) // going through each full li
 				descLine = fullLine.substr(description.length() + 1);
 				string::size_type pos = descLine.find(';');
 				userName = descLine.substr(0, pos);
+				if (userName.length() > 2)
 				iter_swap(userName.begin(), userName.rbegin());
 
 			} // end else if username
@@ -600,6 +657,7 @@ vector<string> encodeCharSwap(vector<string> data) // going through each full li
 				userLine = descLine.substr(userName.length() + 1);
 				string::size_type pos = userLine.find(';');
 				passWord = userLine.substr(0, pos);
+				if (passWord.length() > 2)
 				iter_swap(passWord.begin(), passWord.rbegin());
 
 			} // end else if password
@@ -627,7 +685,7 @@ vector<string> decode1(vector<string> data) // Decode level one converting each 
 	string decodedMsg = "";
 	vector<string> decodedVector;
 
-	for (int j = 0; j < 11; j++)
+	for (int j = 0; j < data.size(); j++)
 	{
 		decodedMsg = "";
 		for (int i = 0; i < data[j].length(); i++) {
@@ -668,17 +726,13 @@ vector<string> decode2(vector<string> data) // Decode level two converting each 
 		for (int i = 0; i < data[j].length(); i++) {
 			ch = data[j][i];
 			x = static_cast<int>(ch);
-			// -=------------------------------------------------------------TESTTINGNGNGNGNGG
-			if (x != 59)
-			{ // this line was not here before
 				if (x % 3 == 0)
 				{
 					x = x - FOURTH_ALTERATION;
 				} // end if divisible by 3 checker
 
 				x = x - THIRD_ALTERATION;
-			} // end if semi colon checker
-
+			
 			ch = static_cast<char>(x);
 
 			encodedMsg += x;
@@ -691,35 +745,58 @@ vector<string> decode2(vector<string> data) // Decode level two converting each 
 		} // end if skip index 1
 
 	} // end for j
-	data = encodeCharSwap(encodedVector);
-	return data;
+	encodedVector = encodeCharSwap(encodedVector);
+	return encodedVector;
 } // end decode2
 
 vector<string> decode3(vector<string> data) // Decode level three converting each character to ascii and applying decode two and decode one to receive new decoded vector
 {
 	vector<string> decodedVector;
 	vector<string> finalDecode;
+	vector<string> testVector;
+	vector<string> testVector2;
 	char ch;
 	int x = 0;
 	string encodedMsg = "";
 	vector<string> encodedVector;
 
-	for (int j = 0; j < 11; j++)
+	for (int j = 0; j < data.size(); j++)
 	{
 		if (j != 0)
 		{
 			encodedVector.push_back(data[j]);
 		} // end if skip index 1 
 	} // end for j
-	encodedVector = encodeCharSwap(encodedVector);
-	for (int j = 0; j < 10; j++)
+
+
+
+	for (int j = 0; j < encodedVector.size(); j++)
 	{
 		encodedMsg = "";
 		for (int i = 0; i < encodedVector[j].length(); i++) {
 			ch = encodedVector[j][i];
+			x = static_cast<int>(ch);
+			if (x == 66)
+			{
+				x = 59;
+			}
+			ch = static_cast<char>(x);
+			encodedMsg += x;
+		}  //  end for i
+		testVector.push_back(encodedMsg);
+	}
+
+
+	finalDecode = encodeCharSwap(testVector);
+	
+	for (int j = 0; j < finalDecode.size(); j++)
+	{
+		encodedMsg = "";
+		
+		for (int i = 0; i < finalDecode[j].length(); i++) {
+			ch = finalDecode[j][i];
 
 			x = static_cast<int>(ch);
-
 			if (x != 59)
 			{
 				if (x % 3 == 0)
@@ -736,11 +813,12 @@ vector<string> decode3(vector<string> data) // Decode level three converting eac
 
 			ch = static_cast<char>(x);
 
-			encodedMsg += x;
+			encodedMsg += ch;
 
 		}  //  end for i
 
-		finalDecode.push_back(encodedMsg);
+		testVector2.push_back(encodedMsg);
 	} // end for j
-	return finalDecode;
+	
+	return testVector2;
 } // end decode3
