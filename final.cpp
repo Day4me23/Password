@@ -1,8 +1,7 @@
 /*--------------------------------------------------------------------*/
 /*  Author: Dayne Farris
-/*  Date: 11/27/2020
+/*  Date: 12/10/2020
 /*  Assignment: Final Project
-* Vulnerabilities:
 /*--------------------------------------------------------------------*/
 
 // Includes
@@ -50,22 +49,21 @@ const int SECOND_ALTERATION = 5;
 const int THIRD_ALTERATION = 4;
 const int FOURTH_ALTERATION = 3;
 
-int main() {
+int main()
+{
 	// Variable Declarations
 	char option;
 	string userIn;
 	ifstream inputFile;
 	char line;
 	int fileLine = 0;
-	int lineCounter = 0;
 	string strFile;
 	vector<string> data;
 	vector<string> decodedData;
-	bool isRunning = true;
+
 
 	cout << "Enter the name of the input file: " << '\t';
 	getline(cin, userIn);
-	cout << userIn;
 	cout << endl;
 	data = readFile(strFile, data, inputFile, userIn);
 	string encodelevel = data[0];
@@ -99,11 +97,14 @@ int main() {
 			cin >> option;
 			option = toupper(option);
 			cout << endl;
-			if (isdigit(option)) {
+			if (isdigit(option))
+			{
 				cout << "recieved a numeric value when unexpected. Please select an available option listed above." << endl;
 			} // end if isdigit()
-			else if (isalpha(option)) {
-				if (option == 'D' || option == 'V' || option == 'E' || option == 'A' || option == 'S' || option == 'X') {
+			else if (isalpha(option))
+			{
+				if (option == 'D' || option == 'V' || option == 'E' || option == 'A' || option == 'S' || option == 'X')
+				{
 					break;
 				} // end if option checker
 				cout << "An unexpected character was entered. Please select an available option listed above." << endl;
@@ -114,7 +115,8 @@ int main() {
 			} // end else
 		} while (option != 'D' || option != 'V' || option != 'E' || option != 'A' || option != 'S' || option != 'X'); // end do
 
-		switch (option) {
+		switch (option)
+		{
 		case 'D':
 			displayLine(decodedData);
 			break;
@@ -137,12 +139,15 @@ int main() {
 			cout << "No selection chosen exists. Please select a value shown listed. " << endl;
 		} // end switch option
 
-		while (inputFile >> line) {
+		while (inputFile >> line)
+		{
 			inputFile >> noskipws;
-			if (line != ';') {
+			if (line != ';')
+			{
 				cout << line;
 			} // end if
-			else if (line == ';') {
+			else if (line == ';')
+			{
 				cout << endl;
 			} // end else if
 		} // end while
@@ -150,7 +155,7 @@ int main() {
 } // end main
 
 void displayLine(vector<string> data) // Displays descriptions
-{ 
+{
 	getDescriptions(data);
 	displayOptions();
 } // end displayLine
@@ -158,15 +163,17 @@ void displayLine(vector<string> data) // Displays descriptions
 void viewLine(vector<string> data, int fileLine) // Selects which line to view out of available options from data
 {
 	do {
-		for (;;) {
+		for (;;)
+		{
 			cout << "Enter line number you wish to view: (Values 1-" << data.size() << ")" << endl;
-			if (cin >> fileLine) {
+			if (cin >> fileLine)
+			{
+				cout << endl;
 				break;
 			} // end if
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		} // end for loop
-
 	} while (fileLine < 1 || fileLine > data.size()); // end do loop
 	getFullLine(data, fileLine);
 	displayOptions();
@@ -175,20 +182,20 @@ void viewLine(vector<string> data, int fileLine) // Selects which line to view o
 vector<string> editLine(vector<string> data, int fileLine) // Selects which line to edit and carries data into newEdit to gather new information
 {
 	do {
-		for (;;) {
+		for (;;)
+		{
 			cout << "Enter line number you wish to edit: (Values 1-" << data.size() << ")" << endl;
-			if (cin >> fileLine) {
+			if (cin >> fileLine)
+			{
+				cout << endl;
 				break;
 			} // end if 
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		} // end for loop
-
 	} while (fileLine < 1 || fileLine > data.size()); // end do loop
 	getFullLine(data, fileLine);
-
 	cout << "WARNING: You cannot use semi-colons in these fields. Any semicolons entered will be removed." << endl << endl;
-
 	data = newEdit(data, fileLine);
 	displayOptions();
 	return data;
@@ -211,32 +218,33 @@ void saveAndEncodeFile(vector<string> decodedData) // Select new file name/encod
 	char flag;
 	cout << "Enter file name: " << endl;
 	cin >> userIn;
-	// getline potential ------------------------------------------------------------------------------
 	cout << endl;
 	do {
 		cout << "Enter encoding level <0, 1, 2, or 3>" << endl;
 		cin >> encodeLevel;
 		cout << endl;
-		if (isalpha(encodeLevel)) {
-			cout << "An unexpected character was entered. Please select an available option listed below." << endl;
-		} // end if isdigit()
-		else if (isdigit(encodeLevel)) {
-			if (encodeLevel == '0' || encodeLevel == '1' || encodeLevel == '2' || encodeLevel == '3') {
+		if (isalpha(encodeLevel))
+		{
+			cout << "An unexpected character was entered. Please select an available option listed below." << endl << endl;
+		} // end if isalpha()
+		else if (isdigit(encodeLevel))
+		{
+			if (encodeLevel == '0' || encodeLevel == '1' || encodeLevel == '2' || encodeLevel == '3')
+			{
 				break;
-			} // end if option checker
-			cout << "An unexpected numeric input was entered. Please select an available option listed below." << endl;
-		} // end else if isalpha()
+			} // end if
+			cout << "An unexpected numeric input was entered. Please select an available option listed below." << endl << endl;
+		} // end else if isdigit()
 		else
 		{
-			cout << "An unexpected character was entered. Please select an available option listed below." << endl;
-		}
+			cout << "An unexpected character was entered. Please select an available option listed below." << endl << endl;
+		} // end else
 	} while (encodeLevel != 1 || encodeLevel != 2 || encodeLevel != 3 || encodeLevel != 0); // end do loop
-		//-------------------------------------------------------------------------------------------------
-	// } while (encodeLevel < 0 || encodeLevel > 3); // end do loop
 	cout << endl;
 	bool encode = false;
 
-	switch (encodeLevel) {
+	switch (encodeLevel)
+	{
 	case '1':
 		encodedVector = encode1(decodedData, encode);
 		saveFile(encodedVector, userIn);
@@ -256,7 +264,6 @@ void saveAndEncodeFile(vector<string> decodedData) // Select new file name/encod
 	default:
 		cout << "No selection chosen exists. Please select a value shown listed. " << endl;
 	} // end switch encodeLevel
-
 	displayOptions();
 } // end saveAndEncodeFile
 
@@ -278,7 +285,6 @@ vector<string> readFile(string strFile, vector<string> data, ifstream& inputFile
 		data.push_back(line);
 	} // end while
 	inputFile.close();
-
 	return data;
 } // end readFile
 
@@ -293,6 +299,7 @@ vector<string>split(const string& s, char delim = ',') // Read file helper metho
 	} // end while
 	return elems;
 } // end split
+
 void getDescriptionByValue(vector<string> data, int fileLine) // gathers info from data at the specific line selected by user and gets sent to substring fullLine
 {
 	string fullLine = data.at(fileLine - 1);
@@ -314,9 +321,10 @@ string process(string const& s) // substring method of finding semi colons
 } // end process
 
 void getDescriptions(vector<string> data) // gathering line info from vector
-{ 
+{
 	int counter = 1; // counter to track current line in console
-	for (int i = 0; i < data.size(); i++) {
+	for (int i = 0; i < data.size(); i++)
+	{
 		string fullRow = data.at(i);
 		string firstDeclaration = process(fullRow);
 		cout << counter++ << "." << '\t' << firstDeclaration << endl;
@@ -325,7 +333,7 @@ void getDescriptions(vector<string> data) // gathering line info from vector
 } // end getDescriptions
 
 void displayOptions() // Displays available options to select for user
-{ 
+{
 	cout << setw(25) << "AVAILABLE OPTIONS" << endl << endl;
 	cout << "D - DISPLAY LINE DESCRIPTIONS" << endl;
 	cout << "V - VIEW LINE DATA" << endl;
@@ -342,6 +350,7 @@ void fileData(string desc, string userName, string passWord, string notes) // Di
 	cout << "Password:" << '\t' << passWord << endl;
 	cout << "Notes:" << '\t' << notes << endl << endl;
 } // end fileData
+
 string getFullLine(vector<string> data, int fileLine) // getting each section of each fullLine through finding semi colon
 {
 	string description;
@@ -350,31 +359,35 @@ string getFullLine(vector<string> data, int fileLine) // getting each section of
 	string descLine;
 	string userLine;
 	string fullLine = data.at(fileLine - 1);
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 4; i++)
+	{
 		string::size_type pos = fullLine.find(';');
 		if (pos != string::npos)
 		{
-			if (i == 0) {
+			if (i == 0)
+			{
 				description = fullLine.substr(0, pos);
 				cout << "Row Desc:" << '\t' << fullLine.substr(0, pos) << endl;
 			} // end if description
-			else if (i == 1) {
+			else if (i == 1)
+			{
 				descLine = fullLine.substr(description.length() + 1);
 				string::size_type pos = descLine.find(';');
 				cout << "Username:" << '\t' << descLine.substr(0, pos) << endl;
 				userName = descLine.substr(description.length(), pos);
 			} // end else if username
-			else if (i == 2) {
+			else if (i == 2)
+			{
 				userLine = descLine.substr(userName.length() + 1);
 				string::size_type pos = userLine.find(';');
 				cout << "Password:" << '\t' << userLine.substr(0, pos) << endl;
 				passWord = userLine.substr(0, pos);
 			} // end else if password
-			else if (i == 3) {
+			else if (i == 3)
+			{
 				string test3 = userLine.substr(passWord.length() + 1);
 				string::size_type pos = test3.find(';');
 				cout << "Notes:" << '\t' << test3.substr(0, pos) << endl << endl;
-
 			} // end else if notes
 		} // end if pos
 		else
@@ -382,9 +395,9 @@ string getFullLine(vector<string> data, int fileLine) // getting each section of
 			return fullLine;
 		} // end else
 	} // end for i
-
 	return fullLine;
 } // end getFullLine
+
 vector<string> newEdit(vector<string> data, int fileLine) // Getting new information for the selected line from the user to populate the updated line through finalString
 {
 	string desc;
@@ -400,28 +413,28 @@ vector<string> newEdit(vector<string> data, int fileLine) // Getting new informa
 		do {
 			cout << "Enter a line description:" << endl;
 			getline(cin, desc);
-			if (desc.empty()) 
+			if (desc.empty())
 			{
-				cout << "No information entered in current field." << endl;
-			}
-		} while (desc.empty());
+				cout << "No information entered in current field." << endl << endl;
+			} // end if
+		} while (desc.empty()); // end do
 		desc.erase(remove(desc.begin(), desc.end(), ';'), desc.end());
 		do {
 			cout << "Enter a username:" << endl;
 			getline(cin, userName);
 			if (userName.empty())
 			{
-				cout << "No information entered in current field." << endl;
-			}
-		} while (userName.empty());
+				cout << "No information entered in current field." << endl << endl;
+			} // end if
+		} while (userName.empty()); // end do
 		userName.erase(remove(userName.begin(), userName.end(), ';'), userName.end());
 		do {
 			cout << "Enter a password:" << endl;
 			getline(cin, passWord);
 			if (passWord.empty())
 			{
-				cout << "No information entered in current field." << endl;
-			}
+				cout << "No information entered in current field." << endl << endl;
+			} // end if
 		} while (passWord.empty());
 		passWord.erase(remove(passWord.begin(), passWord.end(), ';'), passWord.end());
 		do {
@@ -429,9 +442,9 @@ vector<string> newEdit(vector<string> data, int fileLine) // Getting new informa
 			getline(cin, notes);
 			if (notes.empty())
 			{
-				cout << "No information entered in current field." << endl;
-			}
-		} while (notes.empty());
+				cout << "No information entered in current field." << endl << endl;
+			} // end if
+		} while (notes.empty()); // end do
 		notes.erase(remove(notes.begin(), notes.end(), ';'), notes.end());
 		cout << endl;
 		cout << "You have entered:" << endl;
@@ -448,12 +461,13 @@ vector<string> newEdit(vector<string> data, int fileLine) // Getting new informa
 		{
 			cout << "Line was not changed." << endl << endl;
 		} // end else if not y flag
-
 	} while (flag != 'Y' || isdigit(flag)); // end do loop
+
 	finalString = desc + ';' + userName + ';' + passWord + ';' + notes + ';';
 	data[fileLine - 1] = finalString;
 	return data;
 } // end newEdit
+
 vector<string> newAdd(vector<string> data, int fileLine) // Getting new information from the user to build a new line and pushback new line into the vector
 {
 	string aDesc;
@@ -468,38 +482,39 @@ vector<string> newAdd(vector<string> data, int fileLine) // Getting new informat
 		do {
 			cout << "Enter a line description:" << endl;
 			getline(cin, aDesc);
-			if (aDesc.empty()) 
+			if (aDesc.empty())
 			{
-				cout << "No information entered in current field." << endl;
-			}
-		} while (aDesc.empty());
+				cout << "No information entered in current field." << endl << endl;
+			} // end if
+		} while (aDesc.empty()); // end do
 		aDesc.erase(remove(aDesc.begin(), aDesc.end(), ';'), aDesc.end());
 		do {
 			cout << "Enter a username:" << endl;
 			getline(cin, aUserName);
-			if (aUserName.empty()) 
+			if (aUserName.empty())
 			{
-				cout << "No information entered in current field." << endl;
-			}
-		} while (aUserName.empty());
+				cout << "No information entered in current field." << endl << endl;
+			} // end if
+		} while (aUserName.empty()); // end do
 		aUserName.erase(remove(aUserName.begin(), aUserName.end(), ';'), aUserName.end());
 		do {
 			cout << "Enter a password:" << endl;
 			getline(cin, aPassWord);
 			if (aPassWord.empty())
 			{
-				cout << "No information entered in current field." << endl;
-			}
-		} while (aPassWord.empty());
+				cout << "No information entered in current field." << endl << endl;
+			} // end if
+		} while (aPassWord.empty()); // end do
 		aPassWord.erase(remove(aPassWord.begin(), aPassWord.end(), ';'), aPassWord.end());
 		do {
 			cout << "Enter Notes:" << endl;
 			getline(cin, aNotes);
 			if (aNotes.empty())
 			{
-				cout << "No information entered in current field." << endl;
-			}
-		} while (aNotes.empty());
+				cout << "No information entered in current field." << endl << endl;
+			} // end if
+		} while (aNotes.empty()); // end do
+
 		aNotes.erase(remove(aNotes.begin(), aNotes.end(), ';'), aNotes.end());
 		cout << endl;
 		cout << "You have entered:" << endl;
@@ -517,6 +532,7 @@ vector<string> newAdd(vector<string> data, int fileLine) // Getting new informat
 			cout << "Line has not been added." << endl << endl;
 		} // end else if not y flag
 	} while (flag != 'Y' || isdigit(flag)); // end do loop
+
 	aFinalString = aDesc + ';' + aUserName + ';' + aPassWord + ';' + aNotes + ';';
 	data.push_back(aFinalString);
 	return data;
@@ -539,9 +555,9 @@ vector<string> encode1(vector<string> data, bool encode3) // Encode level one co
 	for (int j = 0; j < data.size(); j++)
 	{
 		encodedMsg = "";
-		for (int i = 0; i < data[j].length(); i++) {
+		for (int i = 0; i < data[j].length(); i++)
+		{
 			ch = data[j][i];
-
 			x = static_cast<int>(ch);
 			if (x != 59) // check for semi colon
 			{
@@ -550,13 +566,10 @@ vector<string> encode1(vector<string> data, bool encode3) // Encode level one co
 				if (i % 2 != 0)
 				{
 					x = x + SECOND_ALTERATION;
-				}
-			}
-
+				} // end if index checker
+			} // end if semi colon checker
 			ch = static_cast<char>(x);
-
 			encodedMsg += x;
-
 		}  //  end for index 
 		if (j == 0 && encode3 == false)
 		{
@@ -573,7 +586,7 @@ vector<string> encode2(vector<string> data, bool encode3) // Encode level two co
 	int x = 0;
 	string encodedMsg = "";
 	vector<string> encodedVector;
-	
+
 	data = encodeCharSwap(data);
 	if (encode3 == false)
 	{
@@ -586,41 +599,30 @@ vector<string> encode2(vector<string> data, bool encode3) // Encode level two co
 	for (int j = 0; j < data.size(); j++)
 	{
 		encodedMsg = "";
-		for (int i = 0; i < data[j].length(); i++) {
+		for (int i = 0; i < data[j].length(); i++)
+		{
 			ch = data[j][i];
-
 			x = static_cast<int>(ch);
-			// if (x != 59)
-			{
 			x = x + THIRD_ALTERATION;
-
 			if (x % 3 == 0)
 			{
 				x = x + FOURTH_ALTERATION;
 			} // end if divisible by 3 checker
-		} // end if semi colon checker
-
 			ch = static_cast<char>(x);
-
 			encodedMsg += x;
-
 		}  //  end for index
-		
 		encodedVector.push_back(encodedMsg);
 	} // end for j
-	
 	return encodedVector;
 } // end encode2
 
 vector<string> encode3(vector<string> data) // Encode level three converting each character to ascii and applying alterations from encode one and two to receive new encoded vector
-{ 
+{
 	vector<string> encodedVector1;
 	vector<string> encodedVector2;
 	bool encode3 = true;
-
 	encodedVector1 = encode1(data, encode3);
 	encodedVector2 = encode2(encodedVector1, encode3);
-
 	return encodedVector2;
 } // end encode3
 
@@ -635,43 +637,44 @@ vector<string> encodeCharSwap(vector<string> data) // going through each full li
 	string passLine;
 	string notes;
 
-	for (int j = 0; j < data.size(); j++) {
-		for (int i = 0; i < 4; i++) {
+	for (int j = 0; j < data.size(); j++)
+	{
+		for (int i = 0; i < 4; i++)
+		{
 			string fullLine = data.at(j);
 			string::size_type pos = fullLine.find(';');
-			if (i == 0) {
+			if (i == 0)
+			{
 				description = fullLine.substr(0, pos);
 				if (description.length() > 2)
-				iter_swap(description.begin(), description.rbegin());
-
+					iter_swap(description.begin(), description.rbegin());
 			} // end if description
-			else if (i == 1) {
+			else if (i == 1)
+			{
 				descLine = fullLine.substr(description.length() + 1);
 				string::size_type pos = descLine.find(';');
 				userName = descLine.substr(0, pos);
 				if (userName.length() > 2)
-				iter_swap(userName.begin(), userName.rbegin());
-
+					iter_swap(userName.begin(), userName.rbegin());
 			} // end else if username
-			else if (i == 2) {
+			else if (i == 2)
+			{
 				userLine = descLine.substr(userName.length() + 1);
 				string::size_type pos = userLine.find(';');
 				passWord = userLine.substr(0, pos);
 				if (passWord.length() > 2)
-				iter_swap(passWord.begin(), passWord.rbegin());
-
+					iter_swap(passWord.begin(), passWord.rbegin());
 			} // end else if password
-			else if (i == 3) {
+			else if (i == 3)
+			{
 				passLine = userLine.substr(passWord.length() + 1);
 				string::size_type pos = passLine.find(';');
 				notes = passLine.substr(0, pos);
 				if (notes.length() > 2) {
 					iter_swap(notes.begin(), notes.rbegin()); // swapper
-				}
+				} // end if
 				finalString = description + ';' + userName + ';' + passWord + ';' + notes + ';';
-
 			} // end else if notes
-
 		} // end for i
 		data[j] = (finalString);
 	} // end for j
@@ -679,7 +682,7 @@ vector<string> encodeCharSwap(vector<string> data) // going through each full li
 } // end encodeCharSwap
 
 vector<string> decode1(vector<string> data) // Decode level one converting each character to ascii and applying alterations to receive new decoded vector
-{ 
+{
 	char ch;
 	int x = 0;
 	string decodedMsg = "";
@@ -688,10 +691,10 @@ vector<string> decode1(vector<string> data) // Decode level one converting each 
 	for (int j = 0; j < data.size(); j++)
 	{
 		decodedMsg = "";
-		for (int i = 0; i < data[j].length(); i++) {
+		for (int i = 0; i < data[j].length(); i++)
+		{
 			ch = data[j][i];
 			x = static_cast<int>(ch);
-
 			if (x != 59)
 			{
 				x = x + FIRST_ALTERATION;
@@ -701,7 +704,6 @@ vector<string> decode1(vector<string> data) // Decode level one converting each 
 				} // end if divisible by 2 checker
 			} // end if semi colon checker
 			ch = static_cast<char>(x);
-
 			decodedMsg += x;
 		}  //  end for i
 		if (j != 0)
@@ -718,32 +720,26 @@ vector<string> decode2(vector<string> data) // Decode level two converting each 
 	int x = 0;
 	string encodedMsg = "";
 	vector<string> encodedVector;
-	
-	
+
 	for (int j = 0; j < data.size(); j++)
 	{
 		encodedMsg = "";
-		for (int i = 0; i < data[j].length(); i++) {
+		for (int i = 0; i < data[j].length(); i++)
+		{
 			ch = data[j][i];
 			x = static_cast<int>(ch);
-				if (x % 3 == 0)
-				{
-					x = x - FOURTH_ALTERATION;
-				} // end if divisible by 3 checker
-
-				x = x - THIRD_ALTERATION;
-			
+			if (x % 3 == 0)
+			{
+				x = x - FOURTH_ALTERATION;
+			} // end if divisible by 3 checker
+			x = x - THIRD_ALTERATION;
 			ch = static_cast<char>(x);
-
 			encodedMsg += x;
-
 		}  //  end for i
-
 		if (j != 0)
 		{
 			encodedVector.push_back(encodedMsg);
 		} // end if skip index 1
-
 	} // end for j
 	encodedVector = encodeCharSwap(encodedVector);
 	return encodedVector;
@@ -768,12 +764,11 @@ vector<string> decode3(vector<string> data) // Decode level three converting eac
 		} // end if skip index 1 
 	} // end for j
 
-
-
 	for (int j = 0; j < encodedVector.size(); j++)
 	{
 		encodedMsg = "";
-		for (int i = 0; i < encodedVector[j].length(); i++) {
+		for (int i = 0; i < encodedVector[j].length(); i++)
+		{
 			ch = encodedVector[j][i];
 			x = static_cast<int>(ch);
 			if (x == 66)
@@ -784,18 +779,16 @@ vector<string> decode3(vector<string> data) // Decode level three converting eac
 			encodedMsg += x;
 		}  //  end for i
 		testVector.push_back(encodedMsg);
-	}
-
+	} // end for
 
 	finalDecode = encodeCharSwap(testVector);
-	
+
 	for (int j = 0; j < finalDecode.size(); j++)
 	{
 		encodedMsg = "";
-		
-		for (int i = 0; i < finalDecode[j].length(); i++) {
+		for (int i = 0; i < finalDecode[j].length(); i++)
+		{
 			ch = finalDecode[j][i];
-
 			x = static_cast<int>(ch);
 			if (x != 59)
 			{
@@ -810,15 +803,10 @@ vector<string> decode3(vector<string> data) // Decode level three converting eac
 					x = x - SECOND_ALTERATION;
 				} // end if index checker 
 			} // end if semi colon checker
-
 			ch = static_cast<char>(x);
-
 			encodedMsg += ch;
-
 		}  //  end for i
-
 		testVector2.push_back(encodedMsg);
 	} // end for j
-	
 	return testVector2;
 } // end decode3

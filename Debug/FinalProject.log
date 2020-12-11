@@ -1,21 +1,21 @@
 ﻿  final.cpp
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(87,21): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(170,36): warning C4018: '>': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(187,36): warning C4018: '>': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(211,7): warning C4101: 'flag': unreferenced local variable
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(319,20): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(539,20): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(542,21): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(586,20): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(589,21): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(638,20): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(688,20): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(691,21): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(723,20): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(726,21): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(763,20): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(773,20): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(776,21): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(792,20): warning C4018: '<': signed/unsigned mismatch
-D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(796,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(88,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(180,36): warning C4018: '>': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(199,36): warning C4018: '>': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(221,7): warning C4101: 'flag': unreferenced local variable
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(329,20): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(558,20): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(561,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(602,20): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(605,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(643,20): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(694,20): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(697,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(727,20): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(730,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(762,20): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(770,20): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(773,21): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(789,20): warning C4018: '<': signed/unsigned mismatch
+D:\C++ 216\C++ Projects\FinalProject\FinalProject\final.cpp(792,21): warning C4018: '<': signed/unsigned mismatch
   FinalProject.vcxproj -> D:\C++ 216\C++ Projects\FinalProject\Debug\FinalProject.exe
